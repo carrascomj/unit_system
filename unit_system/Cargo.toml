@@ -1,7 +1,13 @@
 [package]
 name = "unit_system"
 version = "0.1.0"
+authors = ["Jorge Carrasco Muriel <carrascomurielj@gmail.com>"]
 edition = "2021"
+description = "Automatically derived typed unit systems."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/carrascomj/unit_systeunit_system"
+categories = ["science", "mathematics"]
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
