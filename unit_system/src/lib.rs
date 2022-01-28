@@ -34,7 +34,7 @@ pub mod units;
 pub mod prelude {
     pub use crate::op::*;
     pub use crate::traits::*;
-    pub use unit_derive::Unit;
+    pub use unit_system_derive::Unit;
 }
 
 #[cfg(test)]

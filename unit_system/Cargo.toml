@@ -1,15 +1,16 @@
 [package]
-name = "unit_system"
-version = "0.1.0"
-authors = ["Jorge Carrasco Muriel <carrascomurielj@gmail.com>"]
 edition = "2021"
+version = "0.1.0"
+name = "unit_system"
+authors = ["Jorge Carrasco Muriel <carrascomurielj@gmail.com>"]
 description = "Automatically derived typed unit systems."
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/carrascomj/unit_systeunit_system"
+repository = "https://github.com/carrascomj/unit_system"
 categories = ["science", "mathematics"]
-readme = "README.md"
+readme = "../README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-unit_derive = {version="0.0.1", path="../unit_derive"}
+# unit_system_derive = {version="0.1.0", path="../unit_system_derive"}
+unit_system_derive = "0.1.0"

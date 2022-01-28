@@ -1,0 +1,18 @@
+[package]
+edition = "2021"
+version = "0.1.0"
+name = "unit_system_derive"
+authors = ["Jorge Carrasco Muriel <carrascomurielj@gmail.com>"]
+description = "Proc_macro derives for the unit_system crate."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/carrascomj/unit_system"
+categories = ["science", "mathematics"]
+readme = "README.md"
+
+[dependencies]
+syn = "1.0"
+quote = "1.0"
+proc-macro2 = "1.0"
+
+[lib]
+proc-macro = true

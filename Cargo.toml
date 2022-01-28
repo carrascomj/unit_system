@@ -1,5 +1,5 @@
 [workspace]
 members = [
   "unit_system",
-  "unit_derive"
+  "unit_system_derive"
 ]
