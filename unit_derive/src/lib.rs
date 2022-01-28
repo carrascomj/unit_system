@@ -15,6 +15,10 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
         _ => panic!("expected a struct with named fields"),
     };
     let field_type = fields.iter().map(|field| &field.ty);
+    let a_field = fields.iter().map(|field| &field.ty).next();
+    if let syn::Type::Verbatim(s) = a_field.unwrap() {
+        println!("{:?}", s)
+    }
     let field_type_h = field_type.clone();
     let field_type_d = field_type.clone();
     let field_type_m = field_type.clone();
@@ -31,6 +35,7 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let field_vis_c = field_vis.clone();
 
     let struct_name = &input.ident;
+    let struct_vis = &input.vis;
     let mili = Ident::new(&format!("M{}", struct_name), Span::call_site());
     let nano = Ident::new(&format!("N{}", struct_name), Span::call_site());
     let micro = Ident::new(&format!("Mu{}", struct_name), Span::call_site());
@@ -40,7 +45,6 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let centi = Ident::new(&format!("C{}", struct_name), Span::call_site());
 
     let output: TokenStream = quote! {
-    // Preserve the input struct unchanged in the output.
     impl Unit for #struct_name {
         type BaseUnit = #struct_name;
         fn to_base(self) -> Self {
@@ -52,7 +56,7 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     }
 
     #[derive(Debug, PartialOrd, PartialEq)]
-    pub struct #mili (
+    #struct_vis struct #mili (
             #(
                 #field_vis_m #field_type_m
             )*
@@ -68,7 +72,7 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     }
 
     #[derive(Debug, PartialOrd, PartialEq)]
-    pub struct #nano (
+    #struct_vis struct #nano (
             #(
                 #field_vis_n #field_type_n
             )*
@@ -84,7 +88,7 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     }
 
     #[derive(Debug, PartialOrd, PartialEq)]
-    pub struct #micro (
+    #struct_vis struct #micro (
             #(
                 #field_vis_mu #field_type_mu
             )*
@@ -99,7 +103,7 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     }
 
     #[derive(Debug, PartialOrd, PartialEq)]
-    pub struct #kilo (
+    #struct_vis struct #kilo (
             #(
                 #field_vis #field_type
             )*
@@ -115,7 +119,7 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     }
 
     #[derive(Debug, PartialOrd, PartialEq)]
-    pub struct #deci (
+    #struct_vis struct #deci (
             #(
                 #field_vis_d #field_type_d
             )*
@@ -131,7 +135,7 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     }
 
     #[derive(Debug, PartialOrd, PartialEq)]
-    pub struct #centi (
+    #struct_vis struct #centi (
             #(
                 #field_vis_c #field_type_c
             )*
@@ -147,7 +151,7 @@ pub fn unit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     }
 
     #[derive(Debug, PartialOrd, PartialEq)]
-    pub struct #hecta (
+    #struct_vis struct #hecta (
             #(
                 #field_vis_h #field_type_h
             )*
